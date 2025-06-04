@@ -1,4 +1,4 @@
-import { zeroPad } from "../utils/number";
+import { zeroPad } from "../utils/numbers";
 
 export function TimerDisplay({ totalSeconds }) {
   const minutes = Math.floor(totalSeconds / 60);
