@@ -1,44 +1,30 @@
-import { useEffect, useState } from "react";
+import { DEFAULT_START_TIME } from "../constants/time";
+import { useTimerHandler } from "../hooks/useTimerHandler";
+import { minutesToSeconds } from "../utils/dayjs";
+import { Button } from "./Button";
 import { TimerDisplay } from "./display";
 
 export function Timer() {
-  const [count, setCount] = useState(300);
-  const [isRunning, setIsRunning] = useState(false);
-
-  useEffect(() => {
-    let interval;
-    if (isRunning) {
-      interval = setInterval(() => {
-        setCount((count) => {
-          if (count == 0) {
-            resetTimer();
-            alert("5 minutes over");
-            return;
-          }
-          return count - 1;
-        });
-      }, 1000);
-    }
-
-    return () => clearInterval(interval);
-  }, [isRunning]);
-
-  const resetTimer = () => {
-    setCount(300);
-    setIsRunning(false);
-  };
+  const initTime = minutesToSeconds(DEFAULT_START_TIME);
+  const { isRunning, resetTimer, startTimer, stopTimer, timerKey } =
+    useTimerHandler();
 
   return (
     <div class="timer-display">
-      <TimerDisplay totalSeconds={count} />
+      <TimerDisplay
+        key={timerKey}
+        initTime={initTime}
+        isRunning={isRunning}
+        onReset={resetTimer}
+      />
       <div>
-        <button onClick={() => setIsRunning(true)} disabled={isRunning}>
+        <Button onClick={startTimer} disabled={isRunning}>
           Start
-        </button>
-        <button onClick={() => setIsRunning(false)} disabled={!isRunning}>
+        </Button>
+        <Button onClick={stopTimer} disabled={!isRunning}>
           Stop
-        </button>
-        <button onClick={resetTimer}>Reset</button>
+        </Button>
+        <Button onClick={resetTimer}>Reset</Button>
       </div>
     </div>
   );

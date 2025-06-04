@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 
 export function MovieList({ searchKeyword }) {
@@ -46,16 +46,19 @@ export function MovieList({ searchKeyword }) {
       <h2>{searchKeyword ? "Search Results" : "Popular Movies"}</h2>
       <ul>
         {movies.map((movie) => (
-          <li key={movie.id}>
-            <h3>{movie.title}</h3>
-            <p>{movie.overview}</p>
-            {movie.poster_path && (
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-              />
-            )}
-          </li>
+          <Fragment key={movie.id}>
+            <li>
+              <h3>{movie.title}</h3>
+              <p>{movie.overview}</p>
+              {movie.poster_path && (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                />
+              )}
+            </li>
+            <li>asdlasjld</li>
+          </Fragment>
         ))}
       </ul>
     </div>

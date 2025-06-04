@@ -1,12 +1,6 @@
-import { zeroPad } from "../utils/numbers";
+import { useTimeDisplay } from "../hooks/useTimeDisplay";
 
-export function TimerDisplay({ totalSeconds }) {
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-
-  return (
-    <h2>
-      {zeroPad(minutes)}:{zeroPad(seconds)}
-    </h2>
-  );
+export function TimerDisplay({ isRunning, initTime, reset }) {
+  const timeDisplay = useTimeDisplay({ isRunning, initTime, reset });
+  return <h2>{timeDisplay}</h2>;
 }

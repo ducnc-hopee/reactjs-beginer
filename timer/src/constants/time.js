@@ -1,0 +1,1 @@
+export const DEFAULT_START_TIME = 10;
