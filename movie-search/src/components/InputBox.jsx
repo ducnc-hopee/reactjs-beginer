@@ -5,9 +5,7 @@ export function InputBox({onSearch}) {
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        const keyword = e.currentTarget.keyword.value;
         onSearch(inputValue.trim());
-        console.log(keyword);
     };
     
   return (

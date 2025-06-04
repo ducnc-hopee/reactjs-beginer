@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import { InputBox } from './components/inputBox'
-import { MovieList } from './services/movie-search'
+import { InputBox } from './components/InputBox'; 
+import { Display } from './components/Display';
 
 function App() {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -16,7 +16,7 @@ function App() {
           Movie Search Page
         </h1>
         <InputBox onSearch={handleSearch}/>
-        <MovieList searchKeyword={searchKeyword}/>
+        <Display searchKeyword={searchKeyword}/>
       </div>
     </>
   )
