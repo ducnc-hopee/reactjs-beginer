@@ -9,7 +9,7 @@ function CountdownTimer() {
     useEffect(() => { /* runs when timer starts is running == true, it sets up the interval */ /* when timer stops or components unmounts it clears interval  */
    if (isRunning) {
     intervalIdRef.current = setInterval(() => {
-      setTimeLeft(prev => {
+      setTimeLeft(prev => { /* start running this anonymous function every 100 sec */
         if (prev <= 100) {
           clearInterval(intervalIdRef.current);
           setIsRunning(false);
