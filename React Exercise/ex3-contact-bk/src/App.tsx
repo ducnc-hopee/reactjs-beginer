@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import ContactCard from './contactCard';
+import ContactCard from './components/contactCard';
+import AddContact from './components/AddContact';
 import { v4 as uuidv4 } from 'uuid';
-import { Contact } from './types/contacts'; /*Importing a names export exported by name  */
+import { Contact } from './types/contacts'; // Type for contact object
 
 const App: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -9,34 +10,48 @@ const App: React.FC = () => {
   const [newName, setNewName] = useState('');
   const [newCity, setNewCity] = useState('');
 
+  // Add new contact
   const handleAdd = () => {
     if (!newName || !newCity) return;
-    setContacts([...contacts, { id: uuidv4(), name: newName, city: newCity }]);
+    const newContact: Contact = { id: uuidv4(), name: newName, city: newCity };
+    setContacts([...contacts, newContact]);
     setNewName('');
     setNewCity('');
   };
 
-  const handleEdit = (id: string) => setEditingId(id); /* handleEdit is a varible  that holdas a function  */
+  // Start editing a contact
+  const handleEdit = (id: string) => setEditingId(id);
 
+  // Delete contact
   const handleDelete = (id: string) => {
     setContacts(contacts.filter((c) => c.id !== id));
     if (editingId === id) setEditingId(null);
   };
 
+  // Save edited contact
   const handleSave = (id: string, name: string, city: string) => {
-    setContacts(contacts.map((c) => (c.id === id ? { ...c, name, city } : c)));
+    setContacts(
+      contacts.map((c) =>
+        c.id === id ? { ...c, name, city } : c
+      )
+    );
     setEditingId(null);
   };
 
   return (
-    <div className="app">
-      <h1>Contact Book</h1>
-      <div className="add-form">
-        <input placeholder="Name" value={newName} onChange={(e) => setNewName(e.target.value)} />
-        <input placeholder="City" value={newCity} onChange={(e) => setNewCity(e.target.value)} />
-        <button onClick={handleAdd}>Add Contact</button>
-      </div>
+    <div className="app p-6 max-w-xl mx-auto">
+      <h1 className="text-3xl font-bold text-center mb-6">Contact Book</h1>
 
+      {/* Add Contact Form */}
+      <AddContact
+        name={newName}
+        city={newCity}
+        onNameChange={setNewName}
+        onCityChange={setNewCity}
+        onAdd={handleAdd}
+      />
+
+      {/* Contact Cards */}
       <div className="cards">
         {contacts.map((c) => (
           <ContactCard
