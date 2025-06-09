@@ -1,12 +1,8 @@
-import { React } from 'react';
-import MovieSearch from './MovieSearch';
+import { React } from "react";
+import MovieSearch from "./MovieSearch";
 
 function App() {
-  return (
-      <div>
-        <MovieSearch/>
-      </div>
-  );
+  return <MovieSearch />;
 }
 
 export default App;
