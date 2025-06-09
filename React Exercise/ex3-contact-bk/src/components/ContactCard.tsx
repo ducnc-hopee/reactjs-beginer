@@ -1,6 +1,7 @@
 import React from "react";
 import { Contact } from "../types/contacts";
-import EditContact from "./Editcontact";
+import EditContact from "./EditContact";
+import { ViewContact } from "./ViewContact";
 
 type Props = {
   contact: Contact;
@@ -20,24 +21,7 @@ const ContactCard: React.FC<Props> = ({
   return (
     <div className="card bg-white rounded-lg p-4 shadow-md mb-4">
       {!isEditing ? (
-        <>
-          <h3 className="text-xl font-semibold">{contact.name}</h3>
-          <p className="text-gray-500">{contact.city}</p>
-          <div className="mt-2 flex gap-2">
-            <button
-              onClick={() => onEdit(contact.id)}
-              className="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => onDelete(contact.id)}
-              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
-            >
-              Delete
-            </button>
-          </div>
-        </>
+        <ViewContact contact={contact} onEdit={onEdit} onDelete={onDelete} />
       ) : (
         <EditContact contact={contact} onSave={onSave} />
       )}

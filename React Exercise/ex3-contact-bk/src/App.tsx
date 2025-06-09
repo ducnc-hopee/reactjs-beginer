@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import ContactCard from './components/contactCard';
 import AddContact from './components/AddContact';
 import { v4 as uuidv4 } from 'uuid';
 import { Contact } from './types/contacts'; // Type for contact object
+import ContactCard from './components/ContactCard';
 
 const App: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -41,8 +41,6 @@ const App: React.FC = () => {
   return (
     <div className="app p-6 max-w-xl mx-auto">
       <h1 className="text-3xl font-bold text-center mb-6">Contact Book</h1>
-
-      {/* Add Contact Form */}
       <AddContact
         name={newName}
         city={newCity}
@@ -51,7 +49,6 @@ const App: React.FC = () => {
         onAdd={handleAdd}
       />
 
-      {/* Contact Cards */}
       <div className="cards">
         {contacts.map((c) => (
           <ContactCard

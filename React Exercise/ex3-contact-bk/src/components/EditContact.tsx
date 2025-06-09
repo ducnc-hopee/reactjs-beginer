@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Contact } from '../types/contacts';
+import React, { useState } from "react";
+import { Contact } from "../types/contacts";
 
 type Props = {
   contact: Contact;
