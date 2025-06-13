@@ -1,5 +1,4 @@
-import React from "react";
-import { useQuery } from "@tanstack/react-query";
+
 import AddToCartButton from "./AddToCartButton";
 
 function ProductList({products,cartItems,setCartItems}) {
@@ -7,7 +6,7 @@ function ProductList({products,cartItems,setCartItems}) {
   return (
     <div >
       <h1>Coffee Shop</h1>
-      <div style={{ display: "flex", alignItems: "flex-start", gap: "40px" }}>
+      <div >
         <ul
           style={{
             flex: 1,
